@@ -21,11 +21,11 @@ import TestLoad from './pages/TestLoad';
 // Move the Router to be the outermost wrapper
 function AppWrapper() {
   return (
-    <Router> {/* Router is now the outermost component */}
+    <> {/* Router is now the outermost component */}
       <AuthProvider> {/* AuthProvider is now inside Router */}
         <App />
       </AuthProvider>
-    </Router>
+    </>
   );
 }
 

@@ -12,7 +12,7 @@ const Input = ({ label, type = 'text', value, onChange, placeholder, className =
         className={`w-full px-3 py-2 bg-gray-800 border ${error ? 'border-red-500' : 'border-gray-600'} rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${className}`}
         {...props}
       />
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 };
