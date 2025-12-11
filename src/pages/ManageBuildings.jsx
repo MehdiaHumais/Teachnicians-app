@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// src/pages/ManageBuildings.jsx (Simplified for Navigation Test)
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { getBuildings, createBuilding, updateBuilding, deleteBuilding } from '../services/api';
@@ -7,12 +11,17 @@ import Input from '../components/ui/Input';
 import BottomNav from '../components/ui/BottomNav';
 
 const ManageBuildings = () => {
+<<<<<<< HEAD
   const { user } = useAuth();
+=======
+  const { user } = useAuth(); // Get user from context
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
   const [buildings, setBuildings] = useState([]);
   const [editingBuilding, setEditingBuilding] = useState(null);
   const [newBuilding, setNewBuilding] = useState({
     name: '', address: '', technologySummary: '', complexityPercentage: 0, requiredTechnicians: 1, parkingType: 'Underground', parkingInstructions: ''
   });
+<<<<<<< HEAD
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -54,6 +63,58 @@ const ManageBuildings = () => {
       // Fetch updated list to reflect the change properly
       const updatedBuildings = await getBuildings();
       setBuildings(updatedBuildings);
+=======
+  const [loading, setLoading] = useState(true); // State for loading buildings
+  const [error, setError] = useState(''); // State for error messages
+
+  console.log("ManageBuildings: Component rendering. User from context:", user); // Debug log
+
+  // Fetch buildings on component mount (only once)
+  useEffect(() => {
+    const fetchBuildings = async () => {
+      try {
+        console.log("ManageBuildings: Fetching buildings from API..."); // Debug log
+        setLoading(true); // Set loading to true before fetching
+        setError(''); // Clear any previous errors
+        const data = await getBuildings(); // This should fetch from your API
+        console.log("ManageBuildings: API call successful, received ", data); // Debug log
+        setBuildings(data);
+      } catch (err) {
+        console.error("ManageBuildings: Error fetching buildings:", err); // Debug log
+        setError(`Failed to load buildings: ${err.message || err}`);
+      } finally {
+        console.log("ManageBuildings: Setting loading to false after fetch attempt."); // Debug log
+        setLoading(false); // Always set loading to false after fetching
+      }
+    };
+    fetchBuildings();
+  }, []); // Empty dependency array means this runs once on mount
+
+  // NO ROLE CHECK HERE FOR NOW - Let AdminRoute handle it
+
+  const handleCreate = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    console.log("ManageBuildings: HandleCreate called with ", newBuilding); // Debug log
+    if (!newBuilding.name) {
+      setError("Building name is required.");
+      console.log("ManageBuildings: Create failed - name missing."); // Debug log
+      return; // Basic validation
+    }
+    setError(''); // Clear error before action
+    try {
+      // const created = await createBuilding(newBuilding); // Uncomment if using real API
+      // Mock creation
+      const created = {
+        ...newBuilding,
+        id: `b${Date.now()}`, // Use timestamp for a simple unique ID in mock
+        floors: [],
+        risers: [],
+        images: [],
+        techPDFs: []
+      };
+      console.log("ManageBuildings: Mock creation successful, new building:", created); // Debug log
+      setBuildings([...buildings, created]);
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       setNewBuilding({
         name: '',
         address: '',
@@ -79,11 +140,18 @@ const ManageBuildings = () => {
     }
     setError(''); // Clear error before action
     try {
+<<<<<<< HEAD
       await updateBuilding(editingBuilding.id, editingBuilding);
       console.log("ManageBuildings: Update successful for:", editingBuilding); // Debug log
       // Fetch updated list to reflect the change properly
       const updatedBuildings = await getBuildings();
       setBuildings(updatedBuildings);
+=======
+      // await updateBuilding(editingBuilding.id, editingBuilding); // Uncomment if using real API
+      // Mock update
+      console.log("ManageBuildings: Mock update successful for:", editingBuilding); // Debug log
+      setBuildings(buildings.map(b => b.id === editingBuilding.id ? editingBuilding : b));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       setEditingBuilding(null); // Clear editing state
     } catch (err) {
       console.error("ManageBuildings: Error updating building:", err); // Debug log
@@ -95,11 +163,18 @@ const ManageBuildings = () => {
     console.log("ManageBuildings: HandleDelete called for id:", id); // Debug log
     setError(''); // Clear error before action
     try {
+<<<<<<< HEAD
       await deleteBuilding(id);
       console.log("ManageBuildings: Deletion successful for id:", id); // Debug log
       // Fetch updated list to reflect the change properly
       const updatedBuildings = await getBuildings();
       setBuildings(updatedBuildings);
+=======
+      // await deleteBuilding(id); // Uncomment if using real API
+      // Mock deletion
+      console.log("ManageBuildings: Mock deletion successful for id:", id); // Debug log
+      setBuildings(buildings.filter(b => b.id !== id));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       // If the deleted building was the one being edited, clear the editing state
       if (editingBuilding && editingBuilding.id === id) {
         setEditingBuilding(null);

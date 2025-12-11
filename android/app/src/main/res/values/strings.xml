@@ -2,6 +2,11 @@
 <resources>
     <string name="app_name">Teachnicians</string>
     <string name="title_activity_main">Teachnicians</string>
+<<<<<<< HEAD
     <string name="package_name">Teachnician.app</string>
     <string name="custom_url_scheme">Teachnician.app</string>
+=======
+    <string name="package_name">Teachnicians.app</string>
+    <string name="custom_url_scheme">Teachnicians.app</string>
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 </resources>

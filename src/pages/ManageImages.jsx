@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+<<<<<<< HEAD
 import { getBuildings, addImageToBuilding, removeImageFromBuilding } from '../services/api'; // Fetch buildings to link images
+=======
+import { getBuildings } from '../services/api'; // Fetch buildings to link images
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
@@ -35,6 +39,7 @@ const ManageImages = () => {
     return <div className="text-center mt-10">Access Denied. Admins Only.</div>;
   }
 
+<<<<<<< HEAD
   const handleAddImage = async () => {
     if (!selectedBuildingId || !newImage.url) return; // Basic validation
     try {
@@ -66,6 +71,32 @@ const ManageImages = () => {
     } catch (err) {
       console.error("Error deleting image:", err);
     }
+=======
+  const handleAddImage = () => {
+    if (!selectedBuildingId || !newImage.url) return; // Basic validation
+    // Mock update - find building and add image
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        const newImageObj = { id: `i${b.images.length + 1}`, type: newImage.type, url: newImage.url };
+        return { ...b, images: [...(b.images || []), newImageObj] };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setImages([...images, { id: `i${images.length + 1}`, type: newImage.type, url: newImage.url }]);
+    setNewImage({ type: 'Parking', url: '' });
+  };
+
+  const handleDeleteImage = (imageId) => {
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        return { ...b, images: b.images.filter(i => i.id !== imageId) };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setImages(images.filter(i => i.id !== imageId));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
   };
 
   return (

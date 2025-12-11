@@ -53,10 +53,21 @@ const ManageUsers = () => {
     }
     setError('');
     try {
+<<<<<<< HEAD
       const created = await createMockUser(newUser);
       // Fetch updated list to reflect the change properly
       const updatedUsers = getMockUsers();
       setUsers(updatedUsers);
+=======
+      // const created = await createMockUser(newUser); // Uncomment if using real API
+      // Mock creation
+      const created = {
+        ...newUser,
+        id: `u${Date.now()}`, // Use timestamp for a simple unique ID in mock
+        passwordHash: newUser.password // Store the password hash for the mock
+      };
+      setUsers([...users, created]);
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       setNewUser({
         name: '',
         email: '',
@@ -79,10 +90,16 @@ const ManageUsers = () => {
     }
     setError('');
     try {
+<<<<<<< HEAD
       await updateMockUser(editingUser.id, editingUser);
       // Fetch updated list to reflect the change properly
       const updatedUsers = getMockUsers();
       setUsers(updatedUsers);
+=======
+      // await updateMockUser(editingUser.id, editingUser); // Uncomment if using real API
+      // Mock update: find the user in state and replace it
+      setUsers(users.map(u => u.id === editingUser.id ? editingUser : u));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       setEditingUser(null);
       console.log("Updated user:", editingUser);
     } catch (err) {
@@ -94,10 +111,16 @@ const ManageUsers = () => {
   const handleDelete = async (id) => {
     setError('');
     try {
+<<<<<<< HEAD
       await deleteMockUser(id);
       // Fetch updated list to reflect the change properly
       const updatedUsers = getMockUsers();
       setUsers(updatedUsers);
+=======
+      // await deleteMockUser(id); // Uncomment if using real API
+      // Mock deletion: filter out the user from state
+      setUsers(users.filter(u => u.id !== id));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
       if (editingUser && editingUser.id === id) {
         setEditingUser(null);
       }

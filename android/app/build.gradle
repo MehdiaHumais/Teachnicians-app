@@ -1,10 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
+<<<<<<< HEAD
     namespace "Teachnician.app"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "Teachnician.app"
+=======
+    namespace "Teachnicians.app"
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "Teachnicians.app"
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

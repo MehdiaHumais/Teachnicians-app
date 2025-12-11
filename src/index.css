@@ -13,13 +13,20 @@ body {
 
 /* Full-screen container for mobile */
 .full-screen {
+<<<<<<< HEAD
   @apply h-screen w-full flex flex-col pb-16; /* Add padding bottom to accommodate bottom nav */
+=======
+  @apply h-screen w-full flex flex-col;
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 }
 
 /* Bottom Navigation Bar Styles */
 .bottom-nav {
   @apply fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 flex justify-around items-center py-2 px-4;
+<<<<<<< HEAD
   z-index: 1000; /* Ensure it stays on top */
+=======
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 }
 
 .bottom-nav-item {

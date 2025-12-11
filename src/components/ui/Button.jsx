@@ -11,11 +11,15 @@ const Button = ({ children, onClick, variant = 'primary', className = '', disabl
   };
 
   // Ensure onClick is a function before passing it
+<<<<<<< HEAD
   const handleClick = (e) => {
     if (typeof onClick === 'function' && !disabled) {
       onClick(e);
     }
   };
+=======
+  const handleClick = typeof onClick === 'function' ? onClick : undefined;
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 
   return (
     <button

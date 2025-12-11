@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+<<<<<<< HEAD
 import { getBuildings, addFloorToBuilding, removeFloorFromBuilding, addRiserToBuilding, removeRiserFromBuilding } from '../services/api'; // Fetch buildings to link floors/risers
+=======
+import { getBuildings } from '../services/api'; // Fetch buildings to link floors/risers
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
@@ -40,6 +44,7 @@ const ManageFloorsRisers = () => {
     return <div className="text-center mt-10">Access Denied. Admins Only.</div>;
   }
 
+<<<<<<< HEAD
   const handleAddFloor = async () => {
     if (!selectedBuildingId || !newFloor.number) return; // Basic validation
     try {
@@ -104,6 +109,58 @@ const ManageFloorsRisers = () => {
     } catch (err) {
       console.error("Error deleting riser:", err);
     }
+=======
+  const handleAddFloor = () => {
+    if (!selectedBuildingId || !newFloor.number) return; // Basic validation
+    // Mock update - find building and add floor
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        const newFloorObj = { id: `f${b.floors.length + 1}`, number: parseInt(newFloor.number), description: newFloor.description };
+        return { ...b, floors: [...(b.floors || []), newFloorObj] };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setFloors([...floors, { id: `f${floors.length + 1}`, number: parseInt(newFloor.number), description: newFloor.description }]);
+    setNewFloor({ number: '', description: '' });
+  };
+
+  const handleAddRiser = () => {
+    if (!selectedBuildingId || !newRiser.number) return; // Basic validation
+    // Mock update - find building and add riser
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        const newRiserObj = { id: `r${b.risers.length + 1}`, number: newRiser.number, floorsCovered: newRiser.floorsCovered, locationDescription: newRiser.locationDescription };
+        return { ...b, risers: [...(b.risers || []), newRiserObj] };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setRisers([...risers, { id: `r${risers.length + 1}`, number: newRiser.number, floorsCovered: newRiser.floorsCovered, locationDescription: newRiser.locationDescription }]);
+    setNewRiser({ number: '', floorsCovered: '', locationDescription: '' });
+  };
+
+  const handleDeleteFloor = (floorId) => {
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        return { ...b, floors: b.floors.filter(f => f.id !== floorId) };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setFloors(floors.filter(f => f.id !== floorId));
+  };
+
+  const handleDeleteRiser = (riserId) => {
+    const updatedBuildings = buildings.map(b => {
+      if (b.id === selectedBuildingId) {
+        return { ...b, risers: b.risers.filter(r => r.id !== riserId) };
+      }
+      return b;
+    });
+    setBuildings(updatedBuildings);
+    setRisers(risers.filter(r => r.id !== riserId));
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
   };
 
   return (

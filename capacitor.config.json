@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "appId": "Teachnician.app",
+=======
+  "appId": "Teachnicians.app",
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
   "appName": "Teachnicians",
   "webDir": "dist"
 }

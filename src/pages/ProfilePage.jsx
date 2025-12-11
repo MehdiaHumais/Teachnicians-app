@@ -5,11 +5,15 @@ import Button from '../components/ui/Button';
 import BottomNav from '../components/ui/BottomNav';
 
 const ProfilePage = () => {
+<<<<<<< HEAD
   const { user, loading, logout } = useAuth();
 
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
   }
+=======
+  const { user, logout } = useAuth();
+>>>>>>> 09a52b8c2c40d6e8151a6567a884b0bda17d4ca1
 
   if (!user) {
     return <div className="text-center mt-10">Please log in.</div>;
